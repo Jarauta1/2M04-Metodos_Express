@@ -1,19 +1,25 @@
 function enviar() {
     let nombre = document.getElementById("nombre").value
-    let edad = document.getElementById("edad").value
+    let edad = parseInt(document.getElementById("edad").value)
     let apellido = document.getElementById("apellido").value
-    console.log(nombre)
-    console.log(apellido)
-    console.log(edad)
+    let persona = {nombre: nombre, apellido: apellido, edad: edad}
+    fetch("/add", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(persona),
+    })
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (datos) {
+    
+        });
+
 }
 
-fetch("/add", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(nueva),
-})
+fetch("/personas")
     .then(function (res) {
         return res.json();
     })
@@ -23,9 +29,6 @@ fetch("/add", {
                 return res.json();
             })
             .then(function (datos) {
-                console.log(datos)
-                console.log(nueva)
-                datos.push(nueva)
                 let mensaje = ""
 
                 for (let i = 0; i < datos.length; i++) {

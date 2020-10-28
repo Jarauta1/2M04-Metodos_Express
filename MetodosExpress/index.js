@@ -13,11 +13,11 @@ app.get("/personas", function (req, res) {
 
 app.post("/add", function (req, res) {
   let nombre = req.body.nombre;
-  let apellido
-  let edad
+  let apellido = req.body.apellido;
+  let edad = req.body.edad;
   let nueva = {nombre: nombre, apellido: apellido, edad: edad}
-  console.log(nueva)
-  res.send(nueva)
+  personas.push(nueva)
+  res.send("Añadido")
 });
 
 
