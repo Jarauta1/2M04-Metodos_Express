@@ -17,8 +17,24 @@ app.post("/add", function (req, res) {
   let edad = req.body.edad;
   let nueva = {nombre: nombre, apellido: apellido, edad: edad}
   personas.push(nueva)
-  res.send("Añadido")
+  res.send(personas)
+  
 });
 
+app.put("/modificar", function (req, res) {
+
+  let nombre = req.body.nombre;
+  let apellido = req.body.apellido;
+  let edad = req.body.edad;
+  for (let i = 0; i < personas.length; i++) {
+    if (nombre == personas[i].nombre) {
+      personas[i].apellido = apellido;
+      personas[i].edad = edad;
+    }
+  }
+
+  res.send(personas)
+
+})
 
 app.listen(3000);
