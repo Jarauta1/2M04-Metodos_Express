@@ -33,7 +33,21 @@ app.put("/modificar", function (req, res) {
       personas[i].edad = edad;
     }
   }
+  console.log(nombreCambiar)
   res.send(personas)
+})
+
+app.get("/modificarInput", function (req,res) {
+  let nombreCambiar = req.body.nombreCambiar
+  console.log(nombreCambiar)
+  let personaCambiar
+  for (let i = 0; i < personas.length; i++) {
+    if (nombreCambiar == personas[i].nombre) {
+      personaCambiar = {nombre: personas[i].nombre, apellido: personas[i].apellido, edad: personas[i].edad}
+    }
+  }
+  console.log(personaCambiar)
+  res.send(personaCambiar)
 })
 
 app.delete("/borrar", function (req, res) {

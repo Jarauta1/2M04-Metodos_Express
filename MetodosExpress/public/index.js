@@ -28,25 +28,27 @@ function enviar() {
             document.getElementById("apellido").value = ""
 
             let mensajeSelectModificar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectModificar += `
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectModificar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectModificar").innerHTML = `
+            }
+            document.getElementById("selectModificar").innerHTML = `
                 <select id="nombreEleccion" name="select" onchange="eleccion()">
+                <option value="">--</option>
                 ${mensajeSelectModificar}
                 </select>
                 `
 
-                let mensajeSelectEliminar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectEliminar += `
+            let mensajeSelectEliminar = ""
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectEliminar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectEliminar").innerHTML = `
+            }
+            document.getElementById("selectEliminar").innerHTML = `
                 <select id="nombreBorrar" name="select" onchange="eleccionEliminar()">
+                <option value="">--</option>
                 ${mensajeSelectEliminar}
                 </select>
                 `
@@ -55,19 +57,32 @@ function enviar() {
 
 }
 
-let nombreSelect
+/* let nombreSelect
 
 function eleccion() {
     nombreSelect = document.getElementById("nombreEleccion").value
-}
+
+
+    
+} */
 
 function modificar() {
-    let nombreCambiar = nombreSelect
+    let nombreCambiar = document.getElementById("nombreEleccion").value
     let edad = parseInt(document.getElementById("edadCambio").value)
     let nombre = document.getElementById("nombreCambio").value
     let apellido = document.getElementById("apellidoCambio").value
     let persona = { nombre: nombre, apellido: apellido, edad: edad, nombreCambiar: nombreCambiar }
-
+    
+    fetch("/modificarInput")
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (datos) {
+            document.getElementById("nombreCambio").value = datos.nombre
+            document.getElementById("apellidoCambio").value = datos.apellido
+            document.getElementById("edadCambio").value = datos.edad
+        })
+        
     fetch("/modificar", {
         method: "PUT",
         headers: {
@@ -92,25 +107,27 @@ function modificar() {
             document.getElementById("apellido").value = ""
 
             let mensajeSelectModificar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectModificar += `
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectModificar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectModificar").innerHTML = `
+            }
+            document.getElementById("selectModificar").innerHTML = `
                 <select id="nombreEleccion" name="select" onchange="eleccion()">
+                <option value="">--</option>
                 ${mensajeSelectModificar}
                 </select>
                 `
 
-                let mensajeSelectEliminar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectEliminar += `
+            let mensajeSelectEliminar = ""
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectEliminar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectEliminar").innerHTML = `
+            }
+            document.getElementById("selectEliminar").innerHTML = `
                 <select id="nombreBorrar" name="select" onchange="eleccionEliminar()">
+                <option value="">--</option>
                 ${mensajeSelectEliminar}
                 </select>
                 `
@@ -150,25 +167,27 @@ function eliminar() {
             document.getElementById("apellido").value = ""
 
             let mensajeSelectModificar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectModificar += `
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectModificar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectModificar").innerHTML = `
+            }
+            document.getElementById("selectModificar").innerHTML = `
                 <select id="nombreEleccion" name="select" onchange="eleccion()">
+                <option value="">--</option>
                 ${mensajeSelectModificar}
                 </select>
                 `
 
-                let mensajeSelectEliminar = ""
-                for (let i = 0; i < datos.length; i++) {
-                    mensajeSelectEliminar += `
+            let mensajeSelectEliminar = ""
+            for (let i = 0; i < datos.length; i++) {
+                mensajeSelectEliminar += `
                     <option value="${datos[i].nombre}">${datos[i].nombre}</option>
                     `
-                }
-                document.getElementById("selectEliminar").innerHTML = `
+            }
+            document.getElementById("selectEliminar").innerHTML = `
                 <select id="nombreBorrar" name="select" onchange="eleccionEliminar()">
+                <option value="">--</option>
                 ${mensajeSelectEliminar}
                 </select>
                 `
@@ -203,6 +222,7 @@ fetch("/personas")
                 }
                 document.getElementById("selectModificar").innerHTML = `
                 <select id="nombreEleccion" name="select" onchange="eleccion()">
+                <option value="">--</option>
                 ${mensajeSelectModificar}
                 </select>
                 `
@@ -215,6 +235,7 @@ fetch("/personas")
                 }
                 document.getElementById("selectEliminar").innerHTML = `
                 <select id="nombreBorrar" name="select" onchange="eleccionEliminar()">
+                <option value="">--</option>
                 ${mensajeSelectEliminar}
                 </select>
                 `
