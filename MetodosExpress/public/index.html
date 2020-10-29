@@ -6,19 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Añadir una persona</h1>
+    <h1>Añadir una persona a la tabla</h1>
     <input type="text" placeholder="nombre" id="nombre">
     <input type="text" placeholder="apellidos" id="apellido">
     <input type="text" placeholder="edad" id="edad">
     <button onclick="enviar()">Añadir</button>
     <hr>
     <h1>Modificar los datos de una persona</h1>
-    <div id="select"></div>
+    <div id="selectModificar"></div>
+    <input type="text" placeholder="nombre" id="nombreCambio">
     <input type="text" placeholder="apellidos" id="apellidoCambio">
     <input type="text" placeholder="edad" id="edadCambio">
     <button onclick="modificar()">Modificar</button>
     <script src="./index.js"></script>
     <hr>
+    <h1>Eliminar a una persona de la tabla</h1>
+    <div id="selectEliminar" onchange="eliminar()"></div>
+    <hr>
     <div id="div1"></div>
+    <script src="./index.js"></script>
 </body>
 </html>
